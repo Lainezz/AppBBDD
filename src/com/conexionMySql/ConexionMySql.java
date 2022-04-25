@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class ConexionMySql {
 
 	
-	public String db = "notarbd";
+	public String db = "bdpeliculas";
     public String url = "jdbc:mysql://localhost/"+db;
     public String user = "root";
     public String pass = "";
