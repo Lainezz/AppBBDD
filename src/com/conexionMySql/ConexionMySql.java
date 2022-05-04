@@ -2,7 +2,9 @@ package com.conexionMySql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -72,5 +74,23 @@ public class ConexionMySql {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Metodo que recibe una query y la ejecuta
+	 * @param query Contiene una sentencia SQL, asociada a un SELECT
+	 * @return {@link ResultSet} con los datos obtenidos de la consulta
+	 */
+	public ResultSet doSelect(String query) {
+		ResultSet rs = null;
+		
+		try {
+			Statement st = conn.createStatement();
+			rs = st.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
 	}
 }
