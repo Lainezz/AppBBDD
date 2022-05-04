@@ -9,10 +9,10 @@ import javax.swing.JOptionPane;
 public class ConexionMySql {
 
 	
-	private String db = "bdpeliculas";
-    private String url = "jdbc:mysql://localhost/"+db;
-    private String user = "root";
-    private String pass = "";
+	private String DB = "bdpeliculas";
+    private String URL = "jdbc:mysql://localhost/"+this.DB;
+    private String USER = "root";
+    private String PASS = "";
     
     /**
      * Variable de clase que contiene la conexion a la BBDD
@@ -50,7 +50,7 @@ public class ConexionMySql {
             //cargamos el Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // creamos la conexion
-            conn = DriverManager.getConnection(this.url, this.user, this.pass);
+            conn = DriverManager.getConnection(this.URL, this.USER, this.PASS);
         }
         catch(ClassNotFoundException | SQLException e){
             JOptionPane.showMessageDialog(null, e);
