@@ -13,19 +13,44 @@ public class ConexionMySql {
     public String url = "jdbc:mysql://localhost/"+db;
     public String user = "root";
     public String pass = "";
+    
+    private Connection conn;
+    
+    public static ConexionMySql instancia;
+    
+    public static ConexionMySql getInstance() {
+    	if(instancia == null) {
+    		instancia = new ConexionMySql();
+    	}
+    	return instancia;
+    }
+    
+    private ConexionMySql() {
+    	
+    }
 	
 	public Connection conectar() {
-		Connection con = null;
-
         try{
             //cargamos el Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // creamos un enlace
-            con = DriverManager.getConnection(this.url, this.user, this.pass);
+            conn = DriverManager.getConnection(this.url, this.user, this.pass);
         }
         catch(ClassNotFoundException | SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return con;
+        return conn;
+	}
+	
+	public void desconectar() {
+		try {
+			if(conn != null || !conn.isClosed()) {
+				conn.close();
+				System.out.println("[Desconectado]");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
