@@ -9,15 +9,24 @@ import javax.swing.JOptionPane;
 public class ConexionMySql {
 
 	
-	public String db = "bdpeliculas";
-    public String url = "jdbc:mysql://localhost/"+db;
-    public String user = "root";
-    public String pass = "";
+	private String db = "bdpeliculas";
+    private String url = "jdbc:mysql://localhost/"+db;
+    private String user = "root";
+    private String pass = "";
     
+    /**
+     * Variable de clase que contiene la conexion a la BBDD
+     */
     private Connection conn;
-    
+    /**
+     * Variable de clase donde se va a guardar la instancia de la clase. Esta va a ser única.
+     */
     public static ConexionMySql instancia;
     
+    /**
+     * Método para devolver la instancia única de clase.
+     * @return instancia de la clase {@link ConexionMySql}
+     */
     public static ConexionMySql getInstance() {
     	if(instancia == null) {
     		instancia = new ConexionMySql();
@@ -25,23 +34,32 @@ public class ConexionMySql {
     	return instancia;
     }
     
-    private ConexionMySql() {
-    	
-    }
+    /**
+     * Constructor de clase en privado para poder realizar el patron singleton de manera correcta.
+     * Para llamar a la clase se debe utilizar el metodo {@link #getInstance()} que devuelve un objeto (unico) de tipo {@link ConexionMySql}
+     * @see <a href="https://refactoring.guru/design-patterns/singleton">Patron Singleton</a>
+     */
+    private ConexionMySql() {}
 	
-	public Connection conectar() {
+    /**
+     * Metodo que realiza una conexion a una base de datos MySQL.
+     * La conexion la guarda en {@link #conn}
+     */
+	public void conectar() {
         try{
             //cargamos el Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            // creamos un enlace
+            // creamos la conexion
             conn = DriverManager.getConnection(this.url, this.user, this.pass);
         }
         catch(ClassNotFoundException | SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        return conn;
 	}
 	
+	/**
+	 * Metodo que, en el caso de existir una conexion a una base de datos, realiza la desconexion de la misma.
+	 */
 	public void desconectar() {
 		try {
 			if(conn != null || !conn.isClosed()) {
