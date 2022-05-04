@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 
 public class ConexionMySql {
 
-	
+	/**
+	 * Base de datos remota
+	 */
 	private String DB = "bdpeliculas";
     private String URL = "jdbc:mysql://localhost/"+this.DB;
     private String USER = "root";
