@@ -55,6 +55,7 @@ public class ConexionMySql {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // creamos la conexion
             conn = DriverManager.getConnection(this.URL, this.USER, this.PASS);
+            JOptionPane.showMessageDialog(null, "[Conectado]");
         }
         catch(ClassNotFoundException | SQLException e){
             JOptionPane.showMessageDialog(null, e);
@@ -66,7 +67,7 @@ public class ConexionMySql {
 	 */
 	public void desconectar() {
 		try {
-			if(conn != null || !conn.isClosed()) {
+			if(conn != null) {
 				conn.close();
 				System.out.println("[Desconectado]");
 			}
