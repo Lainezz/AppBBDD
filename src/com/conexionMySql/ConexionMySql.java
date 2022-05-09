@@ -17,7 +17,7 @@ public class ConexionMySql {
     private String URL = "jdbc:mysql://localhost/"+this.DB;
     private String USER = "root";
     private String PASS = "";
-    
+
     /**
      * Variable de clase que contiene la conexion a la BBDD
      */
@@ -26,7 +26,7 @@ public class ConexionMySql {
      * Variable de clase donde se va a guardar la instancia de la clase. Esta va a ser única.
      */
     public static ConexionMySql instancia;
-    
+
     /**
      * Método para devolver la instancia única de clase.
      * @return instancia de la clase {@link ConexionMySql}
@@ -37,14 +37,14 @@ public class ConexionMySql {
     	}
     	return instancia;
     }
-    
+
     /**
      * Constructor de clase en privado para poder realizar el patron singleton de manera correcta.
      * Para llamar a la clase se debe utilizar el metodo {@link #getInstance()} que devuelve un objeto (unico) de tipo {@link ConexionMySql}
      * @see <a href="https://refactoring.guru/design-patterns/singleton">Patron Singleton</a>
      */
     private ConexionMySql() {}
-	
+
     /**
      * Metodo que realiza una conexion a una base de datos MySQL.
      * La conexion la guarda en {@link #conn}
@@ -60,7 +60,7 @@ public class ConexionMySql {
             JOptionPane.showMessageDialog(null, e);
         }
 	}
-	
+
 	/**
 	 * Metodo que, en el caso de existir una conexion a una base de datos, realiza la desconexion de la misma.
 	 */
@@ -75,7 +75,7 @@ public class ConexionMySql {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Metodo que recibe una query y la ejecuta
 	 * @param query Contiene una sentencia SQL, asociada a un SELECT
@@ -83,7 +83,7 @@ public class ConexionMySql {
 	 */
 	public ResultSet doSelect(String query) {
 		ResultSet rs = null;
-		
+
 		try {
 			Statement st = conn.createStatement();
 			rs = st.executeQuery(query);
