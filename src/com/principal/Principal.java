@@ -5,7 +5,8 @@ import com.conexionMySql.ConexionMySql;
 public class Principal {
 
 	public static void main(String[] args) {
-		//Otra prueba
+
+		//Prueba de comentario
 		ConexionMySql.getInstance().conectar();
 		ConexionMySql.getInstance().desconectar();
 
